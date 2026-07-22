@@ -24,6 +24,6 @@ public class Input {
 
         System.out.println("flag is : " + flag);
         System.out.println("value is : " + value);
-        System.out.println("floatVALUE is " + floatValue);+
+        System.out.println("floatVALUE is " + floatValue);
     }
 }
