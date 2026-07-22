@@ -9,7 +9,7 @@ public class TypeCast {
         System.out.println("New num : "+ n4);
 
         //explicit
-        long v1 =1234567891011;
+        long v1 =1234567011;
         //int v2 = v1;  not allowed we need to do it explicitly
         // there might be error or a random value
         int v2 = (int)v1;
