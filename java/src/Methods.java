@@ -26,14 +26,14 @@ public class Methods {
         System.out.println("inside solve : "+ num);
     }
 
-    static void printMulyiple(){
+    static void printMultiple(){
         int value = 20;
         for(int i = 1; i<=10; i++){
             System.out.println(value*i);
         }
     }
     static void main() {
-            printMulyiple();
+        printMultiple();
 
 //        call by value
         int num = 5;
