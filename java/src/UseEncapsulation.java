@@ -8,5 +8,10 @@ public class UseEncapsulation {
         System.out.println(e.erollmentNumber);
         e.setName("Krishna");
         e.getName();
+
+        //with validation
+        e.setAge(-2);
+        e.setAge(10);
+        System.out.println(e.getAge());
     }
 }
