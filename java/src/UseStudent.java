@@ -29,7 +29,6 @@ public class UseStudent {
 
         Student D = A;
         D.name = "Hello";
-
         System.out.println("A : "+ A.name + " B : " + D.name);
     }
 }
