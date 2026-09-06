@@ -1,5 +1,8 @@
 package ArrayProblemsBasics;
 
+import java.lang.classfile.constantpool.InterfaceMethodRefEntry;
+import java.util.HashSet;
+
 public class ArrayProblems {
 
     static double getAverage(int[] arr){
@@ -83,6 +86,40 @@ public class ArrayProblems {
         return -1;
     }
 
+    static void swapAltElement(int [] arr){
+        for(int i = 0; i < arr.length; i = i+2){
+            arr[i] = arr[i+1]^arr[i];
+            arr[i+1] = arr[i+1]^arr[i];
+            arr[i] = arr[i+1]^arr[i];
+        }
+    }
+
+    static void intersectionArray(int arr1[], int arr2[]){
+        HashSet<Integer> set = new HashSet<>();
+
+        for(int num :  arr1){
+            set.add(num);
+        }
+
+        for(int num : arr2){
+            if(set.contains(num)){
+                System.out.println(num);
+                set.remove(num);
+            }
+        }
+    }
+
+    static void alternateExtremes(int [] arr){
+        int i = 0;
+        int j = arr.length - 1;
+        while(i <j){
+            System.out.println(arr[i] + " " + arr[j]);
+            i++;
+            j--;
+        }
+    }
+
+
     static void main(String[] args) {
         int arr[] = {2,4,3,3,3};
 
@@ -116,5 +153,19 @@ public class ArrayProblems {
         //get first unsorted elem
         int arr4[] = {1,2,3,4};
         System.out.println("First unsorted elem : " + getFirstUnsortedElem(arr4));
+
+        //swap alternate elements
+        swapAltElement(arr4);
+        for(int num : arr4){
+            System.out.print(num + " ");
+        }
+        System.out.println();
+
+        //intersection of elements
+        intersectionArray(arr2, arr4);
+
+        //alternate extremes
+        alternateExtremes(arr4);
+
     }
 }
