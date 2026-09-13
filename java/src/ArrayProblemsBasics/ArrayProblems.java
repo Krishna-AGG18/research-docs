@@ -1,9 +1,33 @@
 package ArrayProblemsBasics;
 
 import java.lang.classfile.constantpool.InterfaceMethodRefEntry;
+import java.util.HashMap;
 import java.util.HashSet;
 
 public class ArrayProblems {
+
+    static int getMode(int []arr){
+        HashMap<Integer,Integer> map = new HashMap<>();
+
+        for(int num : arr){
+            map.put(num,map.getOrDefault(num,0) +1);
+        }
+
+        int mode = -1;
+        int modeKey = -1;
+
+        for(int key : map.keySet()){
+            int currKey = key;
+            int currKeyValue = map.get(key);
+
+            if(currKeyValue > mode){
+            mode = Math.max(mode,currKeyValue);
+            modeKey = currKey;
+            }
+        }
+
+        return modeKey;
+    }
 
     static double getAverage(int[] arr){
         int sum = 0;
@@ -119,9 +143,77 @@ public class ArrayProblems {
         }
     }
 
+    static int[]  getHighLowFreq(int arr[]){
+        HashMap<Integer,Integer> freq = new HashMap<>();
+
+        for(int num : arr){
+            freq.put(num, freq.getOrDefault(num,0) + 1);
+        }
+
+        int highFreq = Integer.MIN_VALUE;
+        int highKey = -1;
+        int lowFreq = Integer.MAX_VALUE;
+        int lowKey = -1;
+
+        for(int key : freq.keySet()){
+            int currValue = freq.get(key);
+
+            if(currValue > highFreq){
+                highFreq = currValue;
+                highKey = key;
+            }
+
+            if(currValue < lowFreq){
+                lowFreq = currValue;
+                lowKey = key;
+            }
+        }
+
+        return new int[]{lowKey,highKey};
+    }
+
+    static int[] unionOfArrays(int arr1[], int arr2[]){
+        HashSet<Integer> set = new HashSet<>();
+
+        for(int num : arr1){
+            set.add(num);
+        }
+        for(int num : arr2){
+            set.add(num);
+        }
+
+        int [] ans = new int[set.size()];
+        int i = 0;
+        for(int num : set){
+            ans[i++] = num;
+        }
+
+        return ans;
+    }
+
+    static void rotateByK(int arr[], int k){
+        k = k % arr.length;
+        int temp[] = new int[k];
+        int len = arr.length - 1;
+
+        //store last k elements temporary
+        for(int i = 0 ; i < temp.length; i++){
+            temp[i] = arr[len - i];
+        }
+
+        //move elements forward
+        for(int i = len; i >= k; i--){
+            arr[i] = arr[i-k];
+        }
+
+        for(int i = 0; i < k; i++){
+            arr[i] = temp[k-i-1];
+        }
+    }
 
     static void main(String[] args) {
         int arr[] = {2,4,3,3,3};
+
 
         //average
         System.out.println("Avergae of elements : " + getAverage(arr));
@@ -167,5 +259,31 @@ public class ArrayProblems {
         //alternate extremes
         alternateExtremes(arr4);
 
+        //mode of array - return the key (element)
+        int[] mode = {2,3,3,3,3,3,3,4,5,6,7,1,2,1,2,1,2,1,2,1};
+        System.out.println(getMode(mode));
+
+        int[] freq = getHighLowFreq(mode);
+
+        System.out.println("Lowest freq : " + freq[0] + " , Highest freq : " + freq[1]);
+
+
+        //union of arrays
+        int union1[] = {1,2,3,4,5};
+        int union2[] = {2,3,4,5,7};
+
+        int union[] = unionOfArrays(union1, union2);
+        for(int num : union){
+            System.out.println(num);
+        }
+
+        //swap by k
+        int swap[] = {1,2,3,4,5,6,7,8,9,10};
+        rotateByK(swap,2);
+
+        System.out.println();
+        for(int num : swap){
+            System.out.print(num + " ");
+        }
     }
 }
